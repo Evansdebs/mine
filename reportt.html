@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneReal Report Generator - Primary School</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="report.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div class="logo">
+            <i class="fas fa-school"></i>
+        </div>
+        <h1>OneReal Report Generator</h1>
+        <p>Primary School Version - Creating professional reports</p>
+    </div>
+
+    <!-- Notification Area -->
+    <div id="notification-area"></div>
+
+    <!-- Edit Report Modal -->
+    <div class="edit-modal" id="editReportModal">
+        <div class="edit-modal-content">
+            <div class="edit-modal-header">
+                <h3 id="editModalTitle">Edit Student Report Details</h3>
+                <button class="close-modal" id="closeEditModal">&times;</button>
+            </div>
+            <div class="edit-modal-body">
+                <div class="form-group">
+                    <label for="editAttendance">Attendance</label>
+                    <input type="text" id="editAttendance" placeholder="e.g., 69 OUT OF 70">
+                </div>
+                
+                <div class="form-group dropdown-group">
+                    <label for="editConduct">Conduct</label>
+                    <select id="editConduct">
+                        <option value="">-- Select Conduct --</option>
+                        <!-- Positive Conduct Options -->
+                        <option value="Exemplary behavior, always respectful">Exemplary behavior, always respectful</option>
+                        <option value="Very well behaved and courteous">Very well behaved and courteous</option>
+                        <option value="Polite, respectful and well-mannered">Polite, respectful and well-mannered</option>
+                        <option value="Cooperative and helpful to classmates">Cooperative and helpful to classmates</option>
+                        <option value="Disciplined and focused in class">Disciplined and focused in class</option>
+                        <option value="Friendly and gets along well with peers">Friendly and gets along well with peers</option>
+                        <option value="Responsible and reliable student">Responsible and reliable student</option>
+                        <option value="Shows good leadership qualities">Shows good leadership qualities</option>
+                        <option value="Always follows classroom rules">Always follows classroom rules</option>
+                        <option value="Shows excellent self-control">Shows excellent self-control</option>
+                        <option value="Consistently demonstrates good manners">Consistently demonstrates good manners</option>
+                        <option value="Punctual and prepared for class">Punctual and prepared for class</option>
+                        <option value="Respectful of school property and others' belongings">Respectful of school property and others' belongings</option>
+                        <option value="Demonstrates empathy towards classmates">Demonstrates empathy towards classmates</option>
+                        <option value="Exhibits positive attitude towards learning">Exhibits positive attitude towards learning</option>
+                        
+                        <!-- Average Conduct Options -->
+                        <option value="Generally well-behaved">Generally well-behaved</option>
+                        <option value="Satisfactory behavior most of the time">Satisfactory behavior most of the time</option>
+                        <option value="Respectful to teachers and peers">Respectful to teachers and peers</option>
+                        <option value="Follows instructions adequately">Follows instructions adequately</option>
+                        <option value="Works well when supervised">Works well when supervised</option>
+                        <option value="Shows improvement in behavior">Shows improvement in behavior</option>
+                        <option value="Generally cooperative during lessons">Generally cooperative during lessons</option>
+                        <option value="Responds well to guidance">Responds well to guidance</option>
+                        
+                        <!-- Needs Improvement Options -->
+                        <option value="Needs improvement in behavior">Needs improvement in behavior</option>
+                        <option value="Sometimes disruptive in class">Sometimes disruptive in class</option>
+                        <option value="Can be inattentive during lessons">Can be inattentive during lessons</option>
+                        <option value="Requires constant supervision">Requires constant supervision</option>
+                        <option value="Needs to control temper better">Needs to control temper better</option>
+                        <option value="Often talks during lessons">Often talks during lessons</option>
+                        <option value="Should respect classmates more">Should respect classmates more</option>
+                        <option value="Needs to follow instructions better">Needs to follow instructions better</option>
+                        <option value="Frequently forgets classroom rules">Frequently forgets classroom rules</option>
+                        <option value="Needs to improve self-discipline">Needs to improve self-discipline</option>
+                        <option value="Often forgets homework and materials">Often forgets homework and materials</option>
+                        <option value="Distracts others during class">Distracts others during class</option>
+                        <option value="Needs to listen more carefully">Needs to listen more carefully</option>
+                        <option value="Should work on anger management">Should work on anger management</option>
+                        <option value="Frequently interrupts the teacher">Frequently interrupts the teacher</option>
+                        
+                        <!-- Poor Conduct Options -->
+                        <option value="Exhibits challenging behavior regularly">Exhibits challenging behavior regularly</option>
+                        <option value="Disruptive and disrespectful at times">Disruptive and disrespectful at times</option>
+                        <option value="Requires frequent disciplinary action">Requires frequent disciplinary action</option>
+                        <option value="Struggles with peer relationships">Struggles with peer relationships</option>
+                        <option value="Defiant towards authority figures">Defiant towards authority figures</option>
+                        
+                        <option value="Custom...">Custom...</option>
+                    </select>
+                </div>
+                
+                <div class="form-group dropdown-group">
+                    <label for="editInterest">Interest</label>
+                    <select id="editInterest">
+                        <option value="">-- Select Interest --</option>
+                        <!-- Academic Interests -->
+                        <option value="Reading and storytelling">Reading and storytelling</option>
+                        <option value="Mathematics and puzzles">Mathematics and puzzles</option>
+                        <option value="Science experiments">Science experiments</option>
+                        <option value="Creative writing">Creative writing</option>
+                        <option value="History and stories">History and stories</option>
+                        <option value="Language learning">Language learning</option>
+                        <option value="Computer technology">Computer technology</option>
+                        <option value="Environmental studies">Environmental studies</option>
+                        <option value="Geography and maps">Geography and maps</option>
+                        <option value="Research projects">Research projects</option>
+                        
+                        <!-- Creative Interests -->
+                        <option value="Drawing and painting">Drawing and painting</option>
+                        <option value="Arts and crafts">Arts and crafts</option>
+                        <option value="Music and singing">Music and singing</option>
+                        <option value="Drama and acting">Drama and acting</option>
+                        <option value="Dancing">Dancing</option>
+                        <option value="Pottery and sculpture">Pottery and sculpture</option>
+                        <option value="Creative design">Creative design</option>
+                        <option value="Photography">Photography</option>
+                        
+                        <!-- Physical Interests -->
+                        <option value="Sports and games">Sports and games</option>
+                        <option value="Physical education">Physical education</option>
+                        <option value="Outdoor activities">Outdoor activities</option>
+                        <option value="Team sports">Team sports</option>
+                        <option value="Swimming">Swimming</option>
+                        <option value="Athletics">Athletics</option>
+                        <option value="Martial arts">Martial arts</option>
+                        <option value="Yoga and meditation">Yoga and meditation</option>
+                        
+                        <!-- Social Interests -->
+                        <option value="Group activities">Group activities</option>
+                        <option value="Helping others">Helping others</option>
+                        <option value="Class discussions">Class discussions</option>
+                        <option value="Leadership roles">Leadership roles</option>
+                        <option value="Community service">Community service</option>
+                        <option value="Debate and public speaking">Debate and public speaking</option>
+                        <option value="Peer tutoring">Peer tutoring</option>
+                        
+                        <!-- Practical Interests -->
+                        <option value="Hands-on activities">Hands-on activities</option>
+                        <option value="Practical work">Practical work</option>
+                        <option value="Problem-solving tasks">Problem-solving tasks</option>
+                        <option value="Project work">Project work</option>
+                        <option value="Building and construction">Building and construction</option>
+                        <option value="Cooking and nutrition">Cooking and nutrition</option>
+                        <option value="Gardening">Gardening</option>
+                        
+                        <!-- General Interests -->
+                        <option value="Shows interest in all subjects">Shows interest in all subjects</option>
+                        <option value="Enthusiastic learner">Enthusiastic learner</option>
+                        <option value="Curious about new topics">Curious about new topics</option>
+                        <option value="Eager to participate in class">Eager to participate in class</option>
+                        <option value="Enjoys challenging tasks">Enjoys challenging tasks</option>
+                        
+                        <option value="Custom...">Custom...</option>
+                    </select>
+                </div>
+                
+                <div class="form-group dropdown-group">
+                    <label for="editTeacherRemarks">Class Teacher's Remarks</label>
+                    <select id="editTeacherRemarks">
+                        <option value="">-- Select Remarks --</option>
+                        <!-- Excellent Performance -->
+                        <option value="An outstanding student who excels in all subjects">An outstanding student who excels in all subjects</option>
+                        <option value="Excellent performance, always at the top of the class">Excellent performance, always at the top of the class</option>
+                        <option value="Shows exceptional understanding of all topics">Shows exceptional understanding of all topics</option>
+                        <option value="A brilliant student with great potential">A brilliant student with great potential</option>
+                        <option value="Consistently produces excellent work">Consistently produces excellent work</option>
+                        <option value="Demonstrates exceptional analytical skills">Demonstrates exceptional analytical skills</option>
+                        <option value="Shows remarkable creativity and innovation">Shows remarkable creativity and innovation</option>
+                        <option value="A natural leader in academic pursuits">A natural leader in academic pursuits</option>
+                        
+                        <!-- Very Good Performance -->
+                        <option value="Very good performance in all subjects">Very good performance in all subjects</option>
+                        <option value="Shows great improvement and understanding">Shows great improvement and understanding</option>
+                        <option value="Works diligently and achieves good results">Works diligently and achieves good results</option>
+                        <option value="A hardworking student with good progress">A hardworking student with good progress</option>
+                        <option value="Performs very well in class activities">Performs very well in class activities</option>
+                        <option value="Demonstrates strong comprehension skills">Demonstrates strong comprehension skills</option>
+                        <option value="Consistent performer with good understanding">Consistent performer with good understanding</option>
+                        
+                        <!-- Good Performance -->
+                        <option value="Good performance with steady progress">Good performance with steady progress</option>
+                        <option value="Shows satisfactory understanding of subjects">Shows satisfactory understanding of subjects</option>
+                        <option value="Works well and completes assignments on time">Works well and completes assignments on time</option>
+                        <option value="A good student who participates actively">A good student who participates actively</option>
+                        <option value="Shows potential with consistent effort">Shows potential with consistent effort</option>
+                        <option value="Completes tasks to a satisfactory standard">Completes tasks to a satisfactory standard</option>
+                        <option value="Demonstrates improvement across subjects">Demonstrates improvement across subjects</option>
+                        
+                        <!-- Average Performance -->
+                        <option value="Satisfactory performance in most subjects">Satisfactory performance in most subjects</option>
+                        <option value="Shows average understanding of topics">Shows average understanding of topics</option>
+                        <option value="Needs to be more consistent in studies">Needs to be more consistent in studies</option>
+                        <option value="Should put more effort into schoolwork">Should put more effort into schoolwork</option>
+                        <option value="Capable of better performance with focus">Capable of better performance with focus</option>
+                        <option value="Shows occasional understanding of concepts">Shows occasional understanding of concepts</option>
+                        <option value="Performance varies across different subjects">Performance varies across different subjects</option>
+                        
+                        <!-- Needs Improvement -->
+                        <option value="Needs to improve academic performance">Needs to improve academic performance</option>
+                        <option value="Should pay more attention in class">Should pay more attention in class</option>
+                        <option value="Needs to complete homework regularly">Needs to complete homework regularly</option>
+                        <option value="Should participate more in class activities">Should participate more in class activities</option>
+                        <option value="Requires additional support in studies">Requires additional support in studies</option>
+                        <option value="Struggles to grasp basic concepts">Struggles to grasp basic concepts</option>
+                        <option value="Needs to develop better study habits">Needs to develop better study habits</option>
+                        <option value="Should seek help when facing difficulties">Should seek help when facing difficulties</option>
+                        
+                        <!-- Weak Performance -->
+                        <option value="Struggles with understanding concepts">Struggles with understanding concepts</option>
+                        <option value="Needs significant improvement in all areas">Needs significant improvement in all areas</option>
+                        <option value="Should seek extra help with schoolwork">Should seek extra help with schoolwork</option>
+                        <option value="Finds it difficult to keep up with class">Finds it difficult to keep up with class</option>
+                        <option value="Performance below expected level">Performance below expected level</option>
+                        <option value="Requires intensive remedial support">Requires intensive remedial support</option>
+                        <option value="Struggles with basic literacy/numeracy">Struggles with basic literacy/numeracy</option>
+                        
+                        <!-- Social/Behavioral Remarks -->
+                        <option value="Works well with classmates">Works well with classmates</option>
+                        <option value="A helpful and kind classmate">A helpful and kind classmate</option>
+                        <option value="Shows good leadership in group work">Shows good leadership in group work</option>
+                        <option value="Needs to improve social interaction">Needs to improve social interaction</option>
+                        <option value="Should cooperate more with peers">Should cooperate more with peers</option>
+                        <option value="Demonstrates excellent teamwork skills">Demonstrates excellent teamwork skills</option>
+                        <option value="Sometimes isolated from peer group">Sometimes isolated from peer group</option>
+                        
+                        <!-- Attendance/Punctuality -->
+                        <option value="Excellent attendance and punctuality">Excellent attendance and punctuality</option>
+                        <option value="Regular in attendance">Regular in attendance</option>
+                        <option value="Needs to improve attendance">Needs to improve attendance</option>
+                        <option value="Often late to school">Often late to school</option>
+                        <option value="Frequent absenteeism affecting performance">Frequent absenteeism affecting performance</option>
+                        
+                        <!-- General Encouragement -->
+                        <option value="Keep up the good work!">Keep up the good work!</option>
+                        <option value="With more effort, will do better">With more effort, will do better</option>
+                        <option value="I'm proud of your improvement">I'm proud of your improvement</option>
+                        <option value="Continue working hard next term">Continue working hard next term</option>
+                        <option value="Your hard work is paying off">Your hard work is paying off</option>
+                        <option value="Believe in yourself, you can do it">Believe in yourself, you can do it</option>
+                        
+                        <option value="Custom...">Custom...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="edit-modal-footer">
+                <button class="btn btn-danger" id="cancelEdit">Cancel</button>
+                <button class="btn btn-success" id="saveEdit">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="app">
+        <div class="container">
+            <header>
+                <h1>OneReal Report Generator</h1>
+                <p>THE LIVING SPRING SCHOOL - END OF TERM REPORT SHEET</p>
+            </header>
+
+            <div class="tabs">
+                <div class="tab active" data-tab="school-info">School Information</div>
+                <div class="tab" data-tab="students">Manage Students</div>
+                <div class="tab" data-tab="subjects">Enter Scores</div>
+                <div class="tab" data-tab="individual">Individual Reports</div>
+                <div class="tab" data-tab="performance">Performance & Ranking</div>
+                <div class="tab" data-tab="whatsapp">WhatsApp Integration</div>
+            </div>
+
+            <!-- School Information Tab -->
+            <div class="tab-content active" id="school-info">
+                <div class="card">
+                    <h2>School Term Information</h2>
+                    
+                    <div class="logo-upload-container">
+                        <div class="logo-upload-preview">
+                            <div class="logo-preview" id="logoPreview">
+                                <span>School Logo</span>
+                            </div>
+                            <input type="file" id="logoUpload" accept="image/*" style="display: none;">
+                            <button class="btn" onclick="document.getElementById('logoUpload').click()">
+                                <i class="fas fa-upload"></i> Upload School Logo
+                            </button>
+                            <div class="logo-upload-instructions">
+                                Recommended: 100x100px (Will appear on both sides)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="academicYear">Academic Year</label>
+                            <input type="text" id="academicYear" placeholder="e.g., 2024/2025" value="2024/2025">
+                        </div>
+                        <div class="form-group">
+                            <label for="term">Term</label>
+                            <select id="term">
+                                <option value="1">Term 1</option>
+                                <option value="2">Term 2</option>
+                                <option value="3">Term 3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="closingDate">Date of Vacation</label>
+                            <input type="text" id="closingDate" placeholder="e.g., 19th DEC, 2024" value="19th DEC, 2024">
+                        </div>
+                        <div class="form-group">
+                            <label for="reopeningDate">Re-opening Date</label>
+                            <input type="text" id="reopeningDate" placeholder="e.g., 13th JAN, 2025" value="13th JAN, 2025">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="numberOnRoll">Number on Roll</label>
+                            <input type="number" id="numberOnRoll" placeholder="e.g., 18" value="18">
+                        </div>
+                        <div class="form-group">
+                            <label for="basicLevel">Class Level</label>
+                            <select id="basicLevel">
+                                <option value="1">Class 1</option>
+                                <option value="2">Class 2</option>
+                                <option value="3">Class 3</option>
+                                <option value="4">Class 4</option>
+                                <option value="5">Class 5</option>
+                                <option value="6" selected>Class 6</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-success" id="saveSchoolInfo">Save School Information</button>
+                    
+                    <div class="data-actions">
+                        <button class="btn" id="exportData">Export All Data</button>
+                        <button class="btn" id="importData">Import Data</button>
+                        <input type="file" id="importFile" accept=".json" style="display: none;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manage Students Tab -->
+            <div class="tab-content" id="students">
+                <div class="card">
+                    <h2>Add Students to Class</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="studentName">Student Name</label>
+                            <input type="text" id="studentName" placeholder="Enter student name">
+                        </div>
+                        <div class="form-group">
+                            <label for="studentClass">Class</label>
+                            <select id="studentClass">
+                                <option value="Class 1">Class 1</option>
+                                <option value="Class 2">Class 2</option>
+                                <option value="Class 3">Class 3</option>
+                                <option value="Class 4">Class 4</option>
+                                <option value="Class 5">Class 5</option>
+                                <option value="Class 6">Class 6</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn" id="addStudent">Add Student</button>
+
+                    <div class="search-box">
+                        <input type="text" id="studentSearch" placeholder="Search students by name...">
+                    </div>
+
+                    <div class="students-list" id="studentsList">
+                        <!-- Students will be listed here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enter Scores Tab -->
+            <div class="tab-content" id="subjects">
+                <div class="card">
+                    <h2>Select Subject to Enter Scores</h2>
+                    <div class="class-selector">
+                        <label for="scoreClass">Select Class:</label>
+                        <select id="scoreClass">
+                            <option value="">-- Select Class --</option>
+                            <option value="Class 1">Class 1</option>
+                            <option value="Class 2">Class 2</option>
+                            <option value="Class 3">Class 3</option>
+                            <option value="Class 4">Class 4</option>
+                            <option value="Class 5">Class 5</option>
+                            <option value="Class 6">Class 6</option>
+                        </select>
+                    </div>
+                    <div class="subjects-grid" id="subjectsGrid">
+                        <!-- Subjects will be listed here -->
+                    </div>
+                </div>
+
+                <div class="card" id="scoreEntryCard" style="display: none;">
+                    <h2 id="subjectTitle">Enter Scores for <span id="currentSubject"></span></h2>
+                    <div class="score-entry" id="scoreEntry">
+                        <!-- Score entry form will be here -->
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-success" id="saveScores">Save Scores</button>
+                        <button class="btn btn-danger" id="cancelScores">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Individual Reports Tab - UPDATED -->
+            <div class="tab-content" id="individual">
+                <div class="card">
+                    <h2>Generate Individual Student Reports</h2>
+                    <div class="class-selector">
+                        <label for="individualClass">Select Class:</label>
+                        <select id="individualClass">
+                            <option value="">-- Select Class --</option>
+                            <option value="Class 1">Class 1</option>
+                            <option value="Class 2">Class 2</option>
+                            <option value="Class 3">Class 3</option>
+                            <option value="Class 4">Class 4</option>
+                            <option value="Class 5">Class 5</option>
+                            <option value="Class 6">Class 6</option>
+                        </select>
+                    </div>
+                    
+                    <div class="actions" style="margin-bottom: 20px;">
+                        <button class="btn" id="generateAllReports">Generate All Reports</button>
+                        <button class="btn btn-success" id="bulkDownloadReports" style="display: none;">
+                            <i class="fas fa-download"></i> Download All Reports (ZIP)
+                        </button>
+                    </div>
+                    
+                    <div class="students-grid" id="studentsReportsGrid" style="display: none;">
+                        <!-- Students with their reports will be listed here -->
+                    </div>
+                    
+                    <div id="individualReportContainer">
+                        <!-- Single report preview will be shown here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance & Ranking Tab -->
+            <div class="tab-content" id="performance">
+                <div class="card">
+                    <h2>Student Performance Analysis & Ranking</h2>
+                    <div class="class-selector">
+                        <label for="performanceClass">Select Class:</label>
+                        <select id="performanceClass">
+                            <option value="">-- Select Class --</option>
+                            <option value="Class 1">Class 1</option>
+                            <option value="Class 2">Class 2</option>
+                            <option value="Class 3">Class 3</option>
+                            <option value="Class 4">Class 4</option>
+                            <option value="Class 5">Class 5</option>
+                            <option value="Class 6">Class 6</option>
+                        </select>
+                    </div>
+                    <button class="btn" id="generatePerformance">Generate Performance Analysis</button>
+                    
+                    <div id="performanceContainer">
+                        <!-- Performance charts and ranking will be displayed here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- WhatsApp Integration Tab -->
+            <div class="tab-content" id="whatsapp">
+                <div class="card">
+                    <h2><i class="fab fa-whatsapp" style="color: #25D366;"></i> WhatsApp Report Distribution</h2>
+                    
+                    <div class="whatsapp-instructions">
+                        <h4>How to Send Reports via WhatsApp:</h4>
+                        <ul>
+                            <li>Select a class and student to manage parent contact information</li>
+                            <li>Enter parent's WhatsApp number (include country code, e.g., +233XXXXXXXXX)</li>
+                            <li>Generate and preview the report first</li>
+                            <li>Send individual reports or use bulk send for the entire class</li>
+                            <li>Reports will open in WhatsApp Web/Desktop for you to review before sending</li>
+                        </ul>
+                    </div>
+
+                    <div class="class-selector">
+                        <label for="whatsappClass">Select Class:</label>
+                        <select id="whatsappClass">
+                            <option value="">-- Select Class --</option>
+                            <option value="Class 1">Class 1</option>
+                            <option value="Class 2">Class 2</option>
+                            <option value="Class 3">Class 3</option>
+                            <option value="Class 4">Class 4</option>
+                            <option value="Class 5">Class 5</option>
+                            <option value="Class 6">Class 6</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="whatsappStudent">Select Student</label>
+                            <select id="whatsappStudent">
+                                <option value="">-- Select a student --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="parent-info-grid">
+                        <div class="form-group">
+                            <label for="parentName">Parent/Guardian Name</label>
+                            <input type="text" id="parentName" placeholder="Enter parent/guardian name">
+                        </div>
+                        <div class="form-group">
+                            <label for="whatsappNumber">WhatsApp Number</label>
+                            <div class="phone-input-container">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="whatsappNumber" placeholder="+233XXXXXXXXX">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <button class="btn" id="saveParentInfo">Save Parent Information</button>
+                        <button class="btn btn-whatsapp" id="sendWhatsApp">
+                            <i class="fab fa-whatsapp"></i> Send Report via WhatsApp
+                        </button>
+                    </div>
+
+                    <div class="student-parents-list" id="parentsList">
+                        <!-- Parents/guardians will be listed here -->
+                    </div>
+
+                    <div class="bulk-send-container">
+                        <h3>Bulk Send Reports</h3>
+                        <p>Send reports to all parents in the selected class</p>
+                        <button class="btn btn-whatsapp" id="bulkSendWhatsApp">
+                            <i class="fab fa-whatsapp"></i> Send Reports to All Parents
+                        </button>
+                        <div id="bulkSendStatus" style="margin-top: 15px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="report.js"></script>
+</body>
+</html>
