@@ -1193,7 +1193,7 @@ function generateIndividualReport(studentId) {
                     <div class="performance-label">PERFORMANCE LEVEL</div>
                 </div>
                 <div class="performance-item">
-                    <div class="performance-value">${completedSubjects}/9</div>
+                    <div class="performance-value">${completedSubjects}/10</div>
                     <div class="performance-label">SUBJECTS COMPLETED</div>
                 </div>
             </div>
@@ -1206,7 +1206,7 @@ function generateIndividualReport(studentId) {
                     <div class="performance-label">SUBJECTS WITH SCORES</div>
                 </div>
                 <div class="performance-item">
-                    <div class="performance-value">${9 - completedSubjects}</div>
+                    <div class="performance-value">${10 - completedSubjects}</div>
                     <div class="performance-label">SUBJECTS PENDING</div>
                 </div>
                 <div class="performance-item">
@@ -2125,4 +2125,5 @@ function importData(event) {
 }
 
 // Initialize the app when the page loads
+
 document.addEventListener('DOMContentLoaded', init);
